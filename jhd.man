@@ -1,0 +1,92 @@
+.\" 
+.\" Copyright (c) 2014 2015 2016 2017 2018 
+.\"     John McCue <jmccue@jmcunx.com>
+.\" 
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\" 
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\" 
+.TH jhd 1 "$Date: 2020/10/05 17:27:00 $" "JMC" "Local Command"
+
+.SH NAME
+jhd - Hexadecimal or Octal Dump of 1 or more files
+
+.SH SYNOPSIS
+jhd [OPTIONS] [FILE...]
+
+.SH DESCRIPTION
+Create a hexadecimal or octal dump of one or more files.
+Output written to stdout.
+.PP
+With no FILE specified or if a FILE has the name '-'
+use stdin (Standard Input).
+
+.SH OPTIONS
+.TP
+-D
+Create an decimal dump instead of the default hexadecimal dump.
+.TP
+-e file
+Optional, Errors written to the file specified, defaults to stderr.
+Note, not all errors will be written to the file specified,
+this depends upon where the error occur.
+.TP
+-f
+Force file create.
+Create file even if the target file exists.
+.TP
+-h
+Show brief help and exit.
+.TP
+-m n
+Stop dump after displaying 'n' bytes.
+.TP
+-O
+Create an octal dump instead of the default hexadecimal dump.
+.TP
+-o file
+Optional, Write output to the file specified, defaults to stdout.
+.TP
+-q
+Quiet, never print file headers (names of files processed),
+will only attempt to print headers when processing more than one file.
+.TP
+-S b
+Start dump at byte 'b' instead of the beginning of the file.
+.TP
+-V
+Output version information and exit.
+.TP
+-v
+Display in vertical mode instead of the default horizontal mode.
+.TP
+-x
+Create a hexadecimal dump, this is the default and
+exists only for compatibility.
+.SH DIAGNOSTICS
+If available, od(1) may have more/different options
+.SH BUGS
+Do not know of any.
+.SH SEE ALSO
+ASCII,
+conv,
+db(1),
+hexdump(1),
+jascii(1),
+more(1),
+od(1),
+scat,
+strings(1)
+.SH ERROR-CODES
+.nf
+0 success
+1 processing error or help/rev displayed
+.fi
