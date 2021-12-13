@@ -1,5 +1,5 @@
 .\" 
-.\" Copyright (c) 2014 2015 2016 2017 2018 
+.\" Copyright (c) 2014 ... 2021 2022
 .\"     John McCue <jmccue@jmcunx.com>
 .\" 
 .\" Permission to use, copy, modify, and distribute this software for any
@@ -14,21 +14,17 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\" 
-.TH jhd 1 "$Date: 2020/10/05 17:27:00 $" "JMC" "Local Command"
-
+.TH jhd 1 "2020/10/05" "JMC" "Local Command"
 .SH NAME
 jhd - Hexadecimal or Octal Dump of 1 or more files
-
 .SH SYNOPSIS
 jhd [OPTIONS] [FILE...]
-
 .SH DESCRIPTION
 Create a hexadecimal or octal dump of one or more files.
 Output written to stdout.
 .PP
 With no FILE specified or if a FILE has the name '-'
 use stdin (Standard Input).
-
 .SH OPTIONS
 .TP
 -D

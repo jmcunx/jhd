@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2020 2021
+ * Copyright (c) 2006 2007 2008 ... 2021 2022
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -15,7 +15,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifndef _MSDOS
 #include <sys/param.h>
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -26,16 +28,6 @@
 
 #define MSG_HELP_11 "hex/octal dump of one or more files."
 
-char *rev_jhd_hp = "$Id: jhd_hp.c,v 3.5 2021/02/21 19:56:51 jmccue Exp $";
-
-extern char *rev_jhd;
-extern char *rev_jhd_a;
-extern char *rev_jhd_oct;
-extern char *rev_jhd_dec;
-extern char *rev_jhd_hex;
-extern char *rev_jhd_i;
-extern char *rev_jhd_u;
-
 /*
  * show_rev()
  */
@@ -44,21 +36,7 @@ int show_rev(FILE *fp, char *progname)
 
 {
   fprintf(fp,"%s %s:\n", progname, LIT_REV);
-  fprintf(fp,"\t%s\n", REV_JHD);
-  fprintf(fp,"\t%s\n", rev_jhd);
-  fprintf(fp,"\t%s\n", rev_jhd_a);
-  fprintf(fp,"\t%s\n", rev_jhd_oct);
-  fprintf(fp,"\t%s\n", rev_jhd_dec);
-  fprintf(fp,"\t%s\n", rev_jhd_hex);
-  fprintf(fp,"\t%s\n", rev_jhd_hp);
-  fprintf(fp,"\t%s\n", rev_jhd_i);
-  fprintf(fp,"\t%s\n", rev_jhd_u);
-  fprintf(fp,"\t%s\n", J_LIB2_H);
-  fprintf(fp,"\t     %s %s\n", LIT_INFO_02, j2_get_build());
-
-#ifdef J_LIB2M_H
-  fprintf(fp, "\t%s\n", J_LIB2M_H);
-#endif
+  fprintf(fp,"\t%s %s\n", LIT_INFO_02, j2_get_build());
 
 #ifdef OSTYPE
   fprintf(fp,"\t%s\n",OSTYPE);
@@ -99,6 +77,4 @@ int show_help(FILE *fp, char *progname)
 
   return(EXIT_FAILURE);
 
-} /* END: show_help() */
-
-/* END: jhd_hp.c */
+} /* show_help() */

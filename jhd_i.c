@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2020 2021
+ * Copyright (c) 2006 2007 2008 ... 2021 2022
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -15,7 +15,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifndef _MSDOS
 #include <sys/param.h>
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -25,8 +27,6 @@
 #include <j_lib2m.h>
 
 #include "jhd.h"
-
-char *rev_jhd_i = "$Id: jhd_i.c,v 3.4 2021/02/21 19:56:51 jmccue Exp $";
 
 /*
  * clear_work()
@@ -73,5 +73,3 @@ void init(int argc, char **argv, work_area *w)
     w->start_byte = DEFAULT_START;
 
 } /* process_arg() */
-
-/* END: jhd_i.c */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2020 2021
+ * Copyright (c) 2006 2007 2008 ... 2021 2022
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -18,7 +18,7 @@
 #ifndef HD_H
 
 #define PROG_NAME  "jhd"
-#define REV_JHD "$Id: jhd.h,v 3.3 2020/06/14 19:14:44 jmccue Exp $"
+#define REV_JHD "INCLUDE"
 
 #define MAX_STR 20
 #define MAX_HEX 16
@@ -72,5 +72,3 @@ void show_oct_vertical(int, long int, FILE *, unsigned char);
 void exit_process(int, work_area *);
 
 #endif  /* JHD_H */
-
-/* jhd.h */

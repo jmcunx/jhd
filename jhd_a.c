@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2020 2021
+ * Copyright (c) 2006 2007 2008 ... 2021 2022
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -15,7 +15,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifndef _MSDOS
 #include <sys/param.h>
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -29,11 +31,9 @@
 
 #define SCKARG 80
 
-char *rev_jhd_a = "$Id: jhd_a.c,v 3.5 2021/02/21 19:56:51 jmccue Exp $";
-
 /*
-* open_out() -- save the file anem and check status
-*/
+ * open_out() -- save the file anem and check status
+ */
 int open_out(FILE *wfp, f_info *f, char *fname, int force)
 
 {
@@ -208,6 +208,4 @@ void exit_process(int err_code, work_area *w)
 
   exit(err_code);
 
-} /* END: exit_process() */
-
-/* END: jhd_a.c */
+} /* exit_process() */

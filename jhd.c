@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2020 2021 
+ * Copyright (c) 2006 2007 2008 ... 2021 2022
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -15,7 +15,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifndef _MSDOS
 #include <sys/param.h>
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -36,58 +38,6 @@
 #ifndef R_OK
 #define R_OK 4        /* Test for read permission */
 #endif
-
-/*** global  variables ***/
-char *rev_jhd     = "$Id: jhd.c,v 3.8 2021/02/21 19:56:51 jmccue Exp $";
-
-/*** prototypes ***/
-void process_file(work_area *, char *);
-void show_file_heading(work_area *, char *);
-void process_all_files(int, char **, work_area *);
-int open_in(int *, char *, FILE *);
-
-/*
- * main()
- */
-int main(int argc, char **argv)
-{
-
-  work_area w;
-
-#ifdef OpenBSD
-  if(pledge("stdio rpath wpath cpath",NULL) == -1)
-    err(1,"pledge\n");
-#endif
-
-  init(argc, argv, &w);
-
-  process_all_files(argc, argv, &w);
-
-  exit_process(EXIT_SUCCESS, &w);
-  return(EXIT_SUCCESS);
-
-}  /* main() */
-
-/*
- * process_all_files()
- */
-void process_all_files(int argc, char **argv, work_area *w)
-
-{
-
-  int i;
-
-  w->num_files = 0;
-  for (i = optind; i < argc; i++)
-    (w->num_files)++;
-
-  for (i = optind; i < argc; i++)
-    process_file(w, argv[i]);
-
-  if (i == optind)
-    process_file(w, FILE_NAME_STDIN);
-
-} /* process_all_files() */
 
 /*
  * show_file_heading() -- Show run stats
@@ -111,6 +61,44 @@ void show_file_heading(work_area *w, char *fname)
   fprintf(w->out.fp, "%s\n", LIT_C80);
 
 } /* show_file_heading() */
+
+/*
+ * open_in() -- open input
+ */
+int open_in(int *f, char *fname, FILE *fp)
+
+{
+  int errsave;
+
+  if (fname == (char *) NULL)
+    {
+      (*f) = fileno(stdin);
+      return((int) TRUE);
+    }
+
+  if (strcmp(fname, FILE_NAME_STDIN) == 0)
+    {
+      (*f) = fileno(stdin);
+      return((int) TRUE);
+    }
+
+  if ( access(fname, R_OK) != (int) 0 )
+    {
+      fprintf(fp, MSG_ERR_E016, fname);
+      return((int) FALSE);
+    }
+
+  (*f) = open(fname, ( HD_OMODE ) );
+  errsave = errno;
+  if ((*f) < 0)
+    {
+      fprintf(fp, MSG_WARN_W002, fname, strerror(errsave));
+      return((int) FALSE);
+    }
+
+  return((int) TRUE);
+
+} /* open_in() */
 
 /*
  * process_file() -- Process one file
@@ -226,41 +214,44 @@ void process_file(work_area *w, char *fname)
 } /* process_file() */
 
 /*
- * open_in() -- open input
+ * process_all_files()
  */
-int open_in(int *f, char *fname, FILE *fp)
+void process_all_files(int argc, char **argv, work_area *w)
 
 {
-  int errsave;
 
-  if (fname == (char *) NULL)
-    {
-      (*f) = fileno(stdin);
-      return((int) TRUE);
-    }
+  int i;
 
-  if (strcmp(fname, FILE_NAME_STDIN) == 0)
-    {
-      (*f) = fileno(stdin);
-      return((int) TRUE);
-    }
+  w->num_files = 0;
+  for (i = optind; i < argc; i++)
+    (w->num_files)++;
 
-  if ( access(fname, R_OK) != (int) 0 )
-    {
-      fprintf(fp, MSG_ERR_E016, fname);
-      return((int) FALSE);
-    }
+  for (i = optind; i < argc; i++)
+    process_file(w, argv[i]);
 
-  (*f) = open(fname, ( HD_OMODE ) );
-  errsave = errno;
-  if ((*f) < 0)
-    {
-      fprintf(fp, MSG_WARN_W002, fname, strerror(errsave));
-      return((int) FALSE);
-    }
+  if (i == optind)
+    process_file(w, FILE_NAME_STDIN);
 
-  return((int) TRUE);
+} /* process_all_files() */
 
-} /* open_in() */
+/*
+ * main()
+ */
+int main(int argc, char **argv)
+{
 
-/* END: jhd.c */
+  work_area w;
+
+#ifdef OpenBSD
+  if(pledge("stdio rpath wpath cpath",NULL) == -1)
+    err(1,"pledge\n");
+#endif
+
+  init(argc, argv, &w);
+
+  process_all_files(argc, argv, &w);
+
+  exit_process(EXIT_SUCCESS, &w);
+  return(EXIT_SUCCESS);
+
+}  /* main() */

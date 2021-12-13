@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2020 2021
+ * Copyright (c) 2006 2007 2008 ... 2021 2022
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -15,7 +15,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifndef _MSDOS
 #include <sys/param.h>
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <j_lib2.h>
@@ -27,8 +29,6 @@
 #define MAX_FMT_OCT 134217727L
 #define MAX_FMT_DEC 999999999L
 #define SIZE_FMT_OCT 4
-
-char *rev_jhd_oct = "$Id: jhd_oct.c,v 3.5 2021/02/21 19:56:51 jmccue Exp $";
 
 /*
  * show_octal()
@@ -162,5 +162,3 @@ void show_oct_vertical(int rmode, long int byte, FILE *fp, unsigned char c)
   curr++;
 
 } /* show_oct_vertical() */
-
-/* END: jhd_oct.c */

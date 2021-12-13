@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2020 2021
+ * Copyright (c) 2006 2007 2008 ... 2021 2022
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -25,8 +25,6 @@
 
 #include "jhd.h"
 
-char *rev_jhd_u = "$Id: jhd_u.c,v 3.4 2021/02/21 19:56:51 jmccue Exp $";
-
 /*
  * cnv_chr() -- return a prinitable character
  */
@@ -45,5 +43,3 @@ unsigned char cnv_chr(unsigned char c)
     return((unsigned char) '.');
 
 } /* cnv_chr() */
-
-/* jhd_u.c */
