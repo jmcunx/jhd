@@ -206,6 +206,9 @@ void exit_process(int err_code, work_area *w)
   close_out(&(w->out));
   close_out(&(w->err));
 
+  if (w->prog_name != (char *) NULL)
+    free(w->prog_name);
+
   exit(err_code);
 
 } /* exit_process() */

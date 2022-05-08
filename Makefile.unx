@@ -76,8 +76,14 @@ MKDIR=mkdir
 
 EXE=
 OBJ=.o
-CFLAGS=-c $(WALL) -IINCJLIB -DOSTYPE="\"$(OSDESC)\""
-LFLAGS=$(WALL) -LJLIBLOC -o jhd $(LIBS)
+
+#--- for prod
+CFLAGS=-O1 -c $(WALL) -IINCJLIB -DOSTYPE="\"$(OSDESC)\""
+LFLAGS=-O1 $(WALL) -LJLIBLOC -o jhd $(LIBS)
+
+#--- for valgrind
+#CFLAGS=-O0 -g -c $(WALL) -IINCJLIB -DOSTYPE="\"$(OSDESC)\""
+#LFLAGS=-O0 -g $(WALL) -LJLIBLOC -o jhd $(LIBS)
 
 ALL_OBJ=jhd$(OBJ) jhd_a$(OBJ) jhd_dec$(OBJ) jhd_hex$(OBJ) jhd_hp$(OBJ) jhd_i$(OBJ) jhd_oct$(OBJ) jhd_u$(OBJ)
 ALL_C=jhd.c jhd_a.c jhd_dec.c jhd_hex.c jhd_hp.c jhd_i.c jhd_oct.c jhd_u.c
