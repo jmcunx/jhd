@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2021 2022
+ * Copyright (c) 2006 2007 2008 ... 2022 2023
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -69,6 +69,7 @@ int show_help(FILE *fp, char *progname)
   fprintf(fp, USG_MSG_ARG_MAX_BYTES, SWITCH_CHAR, ARG_MAX_BYTES);
   fprintf(fp, USG_MSG_ARG_OCT,       SWITCH_CHAR, ARG_OCT);
   fprintf(fp, USG_MSG_ARG_OUT,       SWITCH_CHAR, ARG_OUT);
+  fprintf(fp, USG_MSG_ARG_PAUSE,     SWITCH_CHAR, ARG_PAUSE);
   fprintf(fp, USG_MSG_ARG_QUIET_2,   SWITCH_CHAR, ARG_QUIET);
   fprintf(fp, USG_MSG_ARG_START,     SWITCH_CHAR, ARG_START);
   fprintf(fp, USG_MSG_ARG_VERSION,   SWITCH_CHAR, ARG_VERSION);

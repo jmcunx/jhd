@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2021 2022
+ * Copyright (c) 2006 2007 2008 ... 2022 2023
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -40,7 +40,8 @@ void show_hex_line(int rmode,
                    long int byte, 
                    int curr_pos, 
                    unsigned char *raw, 
-                   unsigned char *string)
+                   unsigned char *string,
+                   long int pause)
 
 {
 
@@ -72,7 +73,11 @@ void show_hex_line(int rmode,
       fprintf(fp, "%08lX\n", byte);
     }
   else
-    fprintf(fp, "|%-16s|\n", string);
+    {
+      fprintf(fp, "|%-16s|\n", string);
+      if (pause > 0L)
+	j2_sleepm(pause);
+    }
 
   /*** clear ***/
   memset(raw,    JLIB2_UCHAR_NULL, MAX_HEX);
@@ -86,7 +91,7 @@ void show_hex_line(int rmode,
  *                     1: process
  *                     2: flush
  */
-void show_hex(int rmode, long int byte, FILE *fp, unsigned char c)
+void show_hex(int rmode, long int byte, FILE *fp, unsigned char c, long int pause)
 
 {
   static int curr_pos = 0;
@@ -104,7 +109,7 @@ void show_hex(int rmode, long int byte, FILE *fp, unsigned char c)
 	/*** if (curr_pos == (MAX_HEX - 1))  ***/
 	if (curr_pos == MAX_HEX)
 	  {
-	    show_hex_line(rmode, fp, byte, curr_pos, raw, string);
+	    show_hex_line(rmode, fp, byte, curr_pos, raw, string, pause);
 	    curr_pos = 0;
 	  }
 	raw[curr_pos] = c;
@@ -112,7 +117,7 @@ void show_hex(int rmode, long int byte, FILE *fp, unsigned char c)
 	curr_pos++;
 	break;
       case 2:
-	show_hex_line(rmode, fp, byte, curr_pos, raw, string);
+	show_hex_line(rmode, fp, byte, curr_pos, raw, string, pause);
 	curr_pos = 0;
 	return;
     }
@@ -125,7 +130,7 @@ void show_hex(int rmode, long int byte, FILE *fp, unsigned char c)
  *                              1: process
  *                              2: flush
  */
-void show_hex_vertical(int rmode, long int byte, FILE *fp, unsigned char c)
+void show_hex_vertical(int rmode, long int byte, FILE *fp, unsigned char c, long int pause)
 
 {
   static char pline0[MAX_PRINT_LINE];
@@ -159,7 +164,7 @@ void show_hex_vertical(int rmode, long int byte, FILE *fp, unsigned char c)
 	    }
 	  fprintf(fp, "          %s\n", pline2);
 	}
-      show_hex_vertical(0, byte, fp, JLIB2_UCHAR_NULL);
+      show_hex_vertical(0, byte, fp, JLIB2_UCHAR_NULL, pause);
       return;
     }
   
@@ -178,7 +183,9 @@ void show_hex_vertical(int rmode, long int byte, FILE *fp, unsigned char c)
 	}
       fprintf(fp, "          %s\n", pline2);
       fprintf(fp, "\n");
-      show_hex_vertical(0, byte, fp, JLIB2_UCHAR_NULL);
+      show_hex_vertical(0, byte, fp, JLIB2_UCHAR_NULL, pause);
+      if (pause > 0L)
+	j2_sleepm(pause);
     }
 
   snprintf(fmt_hx, SIZE_FMT_HEX, "%02X", c);

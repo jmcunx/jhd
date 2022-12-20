@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2021 2022
+ * Copyright (c) 2006 2007 2008 ... 2022 2023
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -43,16 +43,17 @@ typedef struct f_file_info
 typedef struct work_area_s
 {
   char *prog_name;
-  long int start_byte;         /* Start print at byte      */
-  long int max_bytes;          /* print max byte count     */
-  int mode_oct;                /* true or false            */
-  int mode_decimal;            /* true or false            */
-  int mode_hex;                /* true or false            */
-  int mode_vertical;           /* true or false            */
-  int processed;               /* Files Processed          */
-  int num_files;               /* total number of files    */
-  int force;                   /* TRUE or FALSE, defaults to FALSE */
-  int verbose;                 /* TRUE or FALSE, defaults to FALSE */
+  long int start_byte;         /* Start print at byte                 */
+  long int max_bytes;          /* print max byte count                */
+  int mode_oct;                /* true or false                       */
+  int mode_decimal;            /* true or false                       */
+  int mode_hex;                /* true or false                       */
+  int mode_vertical;           /* true or false                       */
+  int processed;               /* Files Processed                     */
+  int num_files;               /* total number of files               */
+  int force;                   /* TRUE or FALSE, defaults to FALSE    */
+  int verbose;                 /* TRUE or FALSE, defaults to FALSE    */
+  long int pause;              /* microsecinds to paus between prints */
   f_info out;
   f_info err;
 } work_area;
@@ -63,12 +64,12 @@ void process_arg(int, char **, work_area *);
 void init(int, char **, work_area *);
 int  show_rev(FILE *, char *);
 int  show_help(FILE *, char *);
-void show_hex(int, long int, FILE *, unsigned char);
-void show_decimal(int, FILE *, unsigned char);
-void show_octal(int, FILE *, unsigned char);
-void show_hex_vertical(int, long int, FILE *, unsigned char);
-void show_dec_vertical(int, long int, FILE *, unsigned char);
-void show_oct_vertical(int, long int, FILE *, unsigned char);
+void show_hex(int, long int, FILE *, unsigned char, long int);
+void show_decimal(int, FILE *, unsigned char, long int);
+void show_octal(int, FILE *, unsigned char, long int);
+void show_hex_vertical(int, long int, FILE *, unsigned char, long int);
+void show_dec_vertical(int, long int, FILE *, unsigned char, long int);
+void show_oct_vertical(int, long int, FILE *, unsigned char, long int);
 void exit_process(int, work_area *);
 
 #endif  /* JHD_H */

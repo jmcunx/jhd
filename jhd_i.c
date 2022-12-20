@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2021 2022
+ * Copyright (c) 2006 2007 2008 ... 2022 2023
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -35,6 +35,7 @@ void clear_work(work_area *w, char *a)
 
 {
 
+  w->pause             = 0L;
   w->processed         = (int) 0;
   w->num_files         = (int) 0;
   w->force             = (int) FALSE;

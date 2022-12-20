@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2021 2022
+ * Copyright (c) 2006 2007 2008 ... 2022 2023
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -124,23 +124,23 @@ void process_file(work_area *w, char *fname)
   if ( (w->mode_hex) == (int) TRUE )
     {
       if (w->mode_vertical == (int) TRUE)
-        show_hex_vertical(0, byte_read, w->out.fp, buf[0]);
+        show_hex_vertical(0, byte_read, w->out.fp, buf[0], w->pause);
       else
-	show_hex(0, byte_read, w->out.fp, buf[0]);
+	show_hex(0, byte_read, w->out.fp, buf[0], w->pause);
     }
   if ( (w->mode_decimal) == (int) TRUE )
     {
       if (w->mode_vertical == (int) TRUE)
-        show_dec_vertical(0, byte_read, w->out.fp, buf[0]);
+        show_dec_vertical(0, byte_read, w->out.fp, buf[0], w->pause);
       else
-	show_decimal(0, w->out.fp, (unsigned char) buf[0]);
+	show_decimal(0, w->out.fp, (unsigned char) buf[0], w->pause);
     }
   if ( (w->mode_oct) == (int) TRUE )
     {
       if (w->mode_vertical == (int) TRUE)
-        show_oct_vertical(0, byte_read, w->out.fp, buf[0]);
+        show_oct_vertical(0, byte_read, w->out.fp, buf[0], w->pause);
       else
-	show_octal(0, w->out.fp, (unsigned char) buf[0]);
+	show_octal(0, w->out.fp, (unsigned char) buf[0], w->pause);
     }
 
   /*** Open File ***/
@@ -168,23 +168,23 @@ void process_file(work_area *w, char *fname)
 	  if ( (w->mode_hex) == (int) TRUE )
 	    {
 	      if (w->mode_vertical == (int) TRUE)
-		show_hex_vertical(1, byte_read, w->out.fp, buf[0]);
+		show_hex_vertical(1, byte_read, w->out.fp, buf[0], w->pause);
 	      else
-		show_hex(1, byte_read, w->out.fp, buf[0]);
+		show_hex(1, byte_read, w->out.fp, buf[0], w->pause);
 	    }
 	  if ( (w->mode_decimal) == (int) TRUE )
 	    {
 	      if (w->mode_vertical == (int) TRUE)
-		show_dec_vertical(1, byte_read, w->out.fp, buf[0]);
+		show_dec_vertical(1, byte_read, w->out.fp, buf[0], w->pause);
 	      else
-		show_decimal(1, w->out.fp, buf[0]);
+		show_decimal(1, w->out.fp, buf[0], w->pause);
 	    }
 	  if ( (w->mode_oct) == (int) TRUE )
 	    {
 	      if (w->mode_vertical == (int) TRUE)
-		show_oct_vertical(1, byte_read, w->out.fp, buf[0]);
+		show_oct_vertical(1, byte_read, w->out.fp, buf[0], w->pause);
 	      else
-		show_octal(1, w->out.fp, buf[0]);
+		show_octal(1, w->out.fp, buf[0], w->pause);
 	    }
         }
       memset(buf, JLIB2_UCHAR_NULL, 3);
@@ -194,23 +194,23 @@ void process_file(work_area *w, char *fname)
   if ( (w->mode_hex) == (int) TRUE )
     {
       if (w->mode_vertical == (int) TRUE)
-	show_hex_vertical(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL);
+	show_hex_vertical(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL, w->pause);
       else
-	show_hex(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL);
+	show_hex(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL, w->pause);
     }
   if ( (w->mode_decimal) == (int) TRUE )
     {
       if (w->mode_vertical == (int) TRUE)
-	show_dec_vertical(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL);
+	show_dec_vertical(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL, w->pause);
       else
-	show_decimal(2, w->out.fp, JLIB2_UCHAR_NULL);
+	show_decimal(2, w->out.fp, JLIB2_UCHAR_NULL, w->pause);
     }
   if ( (w->mode_oct) == (int) TRUE )
     {
       if (w->mode_vertical == (int) TRUE)
-	show_oct_vertical(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL);
+	show_oct_vertical(2, byte_read, w->out.fp, JLIB2_UCHAR_NULL, w->pause);
       else
-	show_octal(2, w->out.fp, JLIB2_UCHAR_NULL);
+	show_octal(2, w->out.fp, JLIB2_UCHAR_NULL, w->pause);
     }
 
   fflush(w->out.fp);

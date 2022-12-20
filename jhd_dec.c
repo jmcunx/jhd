@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2021 2022
+ * Copyright (c) 2006 2007 2008 ... 2022 2023
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -33,7 +33,7 @@
 /*
  * show_decimal()
  */
-void show_decimal(int rmode, FILE *fp, unsigned char c)
+void show_decimal(int rmode, FILE *fp, unsigned char c, long int pause)
 
 {
   static long line = 0L;
@@ -84,6 +84,8 @@ void show_decimal(int rmode, FILE *fp, unsigned char c)
     {
       str_idx = 0;
       fprintf(fp, "|%-8s|\n", string);
+      if (pause > 0L)
+	j2_sleepm(pause);
     }
 
 } /* show_decimal() */
@@ -95,7 +97,7 @@ void show_decimal(int rmode, FILE *fp, unsigned char c)
  *                              2: flush
  *                              4: Initialize, but keep byte count
  */
-void show_dec_vertical(int rmode, long int byte, FILE *fp, unsigned char c)
+void show_dec_vertical(int rmode, long int byte, FILE *fp, unsigned char c, long int pause)
 
 {
   static char pline0[MAX_PRINT_LINE];
@@ -132,7 +134,7 @@ void show_dec_vertical(int rmode, long int byte, FILE *fp, unsigned char c)
 	  fprintf(fp, "          %s\n", pline3);
 	  byte += (long int) MAX_PRINT_LINE;
 	}
-      show_dec_vertical(0, byte, fp, JLIB2_UCHAR_NULL);
+      show_dec_vertical(0, byte, fp, JLIB2_UCHAR_NULL, pause);
       return;
     }
   
@@ -151,7 +153,9 @@ void show_dec_vertical(int rmode, long int byte, FILE *fp, unsigned char c)
       fprintf(fp, "          %s\n", pline3);
       fprintf(fp, "\n");
       byte += (long int) MAX_PRINT_LINE;
-      show_dec_vertical(0, byte, fp, JLIB2_UCHAR_NULL);
+      show_dec_vertical(0, byte, fp, JLIB2_UCHAR_NULL, pause);
+      if (pause > 0L)
+	j2_sleepm(pause);
     }
 
   snprintf(fmt_dec, SIZE_FMT_DEC, "%03u", c);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2021 2022
+ * Copyright (c) 2006 2007 2008 ... 2022 2023
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -103,10 +103,10 @@ void process_arg(int argc, char **argv, work_area *w)
   int show_help_brief = (int) FALSE;
   int show_rev_info = (int) FALSE;
 
-  snprintf(ckarg, SCKARG, "%c%c%c%c%c%c%c%c%c:%c:%c:%c:", 
+  snprintf(ckarg, SCKARG, "%c%c%c%c%c%c%c%c%c:%c:%c:%c:%c:", 
            ARG_FORCE, ARG_HELP, ARG_VERSION, ARG_OCT, ARG_DECIMAL,
            ARG_HEX, ARG_QUIET, ARG_VERTICAL,
-           ARG_MAX_BYTES, ARG_START, ARG_OUT, ARG_ERR);
+           ARG_MAX_BYTES, ARG_START, ARG_OUT, ARG_ERR, ARG_PAUSE);
 
   while ((opt = getopt(argc, argv, ckarg)) != -1)
     {
@@ -136,6 +136,14 @@ void process_arg(int argc, char **argv, work_area *w)
 	    w->mode_decimal = (int) FALSE;
 	    w->mode_hex     = (int) TRUE;
 	    break;
+	  case ARG_PAUSE:
+	    if (j2_is_numr(optarg) == (int) TRUE)
+	      w->pause = atol(optarg);
+	    else
+	      {
+		fprintf(stderr, MSG_ERR_E008, optarg, SWITCH_CHAR, ARG_PAUSE);
+		exit_process(EXIT_FAILURE, w);
+	      }
 	  case ARG_QUIET:
 	    w->verbose = (int) FALSE;
 	    break;
