@@ -52,7 +52,7 @@ Create an octal dump instead of the default hexadecimal dump.
 Optional, Write output to the file specified, defaults to stdout.
 .TP
 -p n
-Pause 'n' microseconds between line prints.
+Pause 'n' milliseconds between line prints.
 This can be useful if you want to see data scrolling
 at a slower rate instead of piping through a pager.
 Default, do not pause scrolling.
