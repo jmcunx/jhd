@@ -144,6 +144,7 @@ void process_arg(int argc, char **argv, work_area *w)
 		fprintf(stderr, MSG_ERR_E008, optarg, SWITCH_CHAR, ARG_PAUSE);
 		exit_process(EXIT_FAILURE, w);
 	      }
+	    break;
 	  case ARG_QUIET:
 	    w->verbose = (int) FALSE;
 	    break;
