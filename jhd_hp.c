@@ -69,9 +69,9 @@ int show_help(FILE *fp, char *progname)
   fprintf(fp, USG_MSG_ARG_MAX_BYTES, SWITCH_CHAR, ARG_MAX_BYTES);
   fprintf(fp, USG_MSG_ARG_OCT,       SWITCH_CHAR, ARG_OCT);
   fprintf(fp, USG_MSG_ARG_OUT,       SWITCH_CHAR, ARG_OUT);
-  fprintf(fp, USG_MSG_ARG_PAUSE,     SWITCH_CHAR, ARG_PAUSE);
   fprintf(fp, USG_MSG_ARG_QUIET_2,   SWITCH_CHAR, ARG_QUIET);
   fprintf(fp, USG_MSG_ARG_START,     SWITCH_CHAR, ARG_START);
+  fprintf(fp, USG_MSG_ARG_PAUSE,     SWITCH_CHAR, ARG_PAUSE);
   fprintf(fp, USG_MSG_ARG_VERSION,   SWITCH_CHAR, ARG_VERSION);
   fprintf(fp, USG_MSG_ARG_VERTICAL,  SWITCH_CHAR, ARG_VERTICAL);
   fprintf(fp, USG_MSG_ARG_HEX,       SWITCH_CHAR, ARG_HEX);

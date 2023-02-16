@@ -51,18 +51,18 @@ Create an octal dump instead of the default hexadecimal dump.
 -o file
 Optional, Write output to the file specified, defaults to stdout.
 .TP
--p n
-Pause 'n' milliseconds between line prints.
-This can be useful if you want to see data scrolling
-at a slower rate instead of piping through a pager.
-Default, do not pause scrolling.
-.TP
 -q
 Quiet, never print file headers (names of files processed),
 will only attempt to print headers when processing more than one file.
 .TP
 -S b
 Start dump at byte 'b' instead of the beginning of the file.
+.TP
+-s n
+Pause 'n' milliseconds between line prints.
+This can be useful if you want to see data scrolling
+at a slower rate instead of piping through a pager.
+Default, do not pause scrolling.
 .TP
 -V
 Output version information and exit.
