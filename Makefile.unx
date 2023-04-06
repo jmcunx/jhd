@@ -1,6 +1,6 @@
 # for jhd
 #
-# Copyright (c) 2022 2023
+# Copyright (c) 2022 ... 2023 2024
 #     John McCue <jmccue@jmcunx.com>
 #
 # Permission to use, copy, modify, and distribute this software for any
@@ -68,7 +68,9 @@ CTAGS=ctags
 ECHO=echo
 GZIP=gzip
 LINK=cc
-LIBS=-lj_lib2
+#FOUND_JLIB#LIBS=-lj_lib2
+#NO_JLIB#LIBS=
+#FOUND_JLIB#HJLIB=-DHAVE_JLIB
 MV=mv
 RM=rm -f
 STRIP=strip
@@ -78,15 +80,23 @@ EXE=
 OBJ=.o
 
 #--- for prod
-CFLAGS=-O1 -c $(WALL) -IINCJLIB -DOSTYPE="\"$(OSDESC)\""
-LFLAGS=-O1 $(WALL) -LJLIBLOC -o jhd $(LIBS)
+#FOUND_JLIB#CFLAGS=-O1 -c $(WALL) $(HJLIB) -IINCJLIB -DOSTYPE="\"$(OSDESC)\""
+#FOUND_JLIB#LFLAGS=-O1 $(WALL) -LJLIBLOC -o jhd $(LIBS)
+#NO_JLIB#CFLAGS=-O1 -c $(WALL) -DOSTYPE="\"$(OSDESC)\""
+#NO_JLIB#LFLAGS=-O1 $(WALL) -o jhd $(LIBS)
 
 #--- for valgrind
-#CFLAGS=-O0 -g -c $(WALL) -IINCJLIB -DOSTYPE="\"$(OSDESC)\""
-#LFLAGS=-O0 -g $(WALL) -LJLIBLOC -o jhd $(LIBS)
+#VALGRIND##FOUND_JLIB#CFLAGS=-O0 -g -c $(WALL) $(HJLIB) -IINCJLIB -DOSTYPE="\"$(OSDESC)\""
+#VALGRIND##FOUND_JLIB#LFLAGS=-O0 -g $(WALL) -LJLIBLOC -o jhd $(LIBS)
+#VALGRIND##NO_JLIB#CFLAGS=-O0 -g -c $(WALL) -DOSTYPE="\"$(OSDESC)\""
+#VALGRIND##NO_JLIB#LFLAGS=-O0 -g -$(WALL) -o jhd $(LIBS)
 
-ALL_OBJ=jhd$(OBJ) jhd_a$(OBJ) jhd_dec$(OBJ) jhd_hex$(OBJ) jhd_hp$(OBJ) jhd_i$(OBJ) jhd_oct$(OBJ) jhd_u$(OBJ)
-ALL_C=jhd.c jhd_a.c jhd_dec.c jhd_hex.c jhd_hp.c jhd_i.c jhd_oct.c jhd_u.c
+#--- continue on
+#NO_JLIB#JCC=jhd_j.c
+#NO_JLIB#JCOB=jhd_j$(OBJ)
+
+ALL_OBJ=jhd$(OBJ) jhd_a$(OBJ) jhd_dec$(OBJ) jhd_hex$(OBJ) jhd_hp$(OBJ) jhd_i$(OBJ) $(JCOB) jhd_oct$(OBJ) jhd_u$(OBJ)
+ALL_C=jhd.c jhd_a.c jhd_dec.c jhd_hex.c jhd_hp.c jhd_i.c $(JCC) jhd_oct.c jhd_u.c
 ALL_H=jhd.h
 
 #

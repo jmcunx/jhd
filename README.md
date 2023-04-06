@@ -4,7 +4,7 @@ jhd a kind of od(1) clone for use without
 any kind of Hex or Octal Dump Utility.
 This also contains some options not contained in od(1).
 
-This requires [j\_lib2](https://github.com/jmcunx/j_lib2) to build.
+[j\_lib2](https://github.com/jmcunx/j_lib2) is an **optional** dependency.
 
 [GNU automake](https://en.wikipedia.org/wiki/Automake)
 only confuses me, but this seems to be good enough for me.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006 2007 2008 ... 2022 2023
+ * Copyright (c) 2006 2007 2008 ... 2023 2024
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -24,8 +24,11 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <errno.h>
+
+#ifdef HAVE_JLIB
 #include <j_lib2.h>
 #include <j_lib2m.h>
+#endif
 
 #include "jhd.h"
 
